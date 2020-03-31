@@ -1,7 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Index } from "./pages/index";
-import { About } from "./pages/about"
+import { About } from "./pages/about";
+import { UserContext } from './userContext';
+
 function App() {
    return (
       <Router>
@@ -17,8 +19,10 @@ function App() {
                </ul>
             </nav>
 
-            <Route path="/" exact component={Index} />
-            <Route path="/about/" component={About} />
+            <UserContext.Provider value="hello from context">
+               <Route path="/" exact component={Index} />
+               <Route path="/about/" component={About} />
+            </UserContext.Provider>
          </div>
       </Router>
    );
