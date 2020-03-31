@@ -5,9 +5,9 @@ import { About } from "./pages/about";
 import { UserContext } from './userContext';
 
 function App() {
-   const [value, setValue] = useState(null);
+   const [user, setUser] = useState(null);
 
-   const providerValue = useMemo(() => ({ value, setValue }), [value, setValue]);
+   const value = useMemo(() => ({ user, setUser }), [user, setUser]);
 
    return (
       <Router>
@@ -23,7 +23,7 @@ function App() {
                </ul>
             </nav>
 
-            <UserContext.Provider value={providerValue}>
+            <UserContext.Provider value={value}>
                <Route path="/" exact component={Index} />
                <Route path="/about/" component={About} />
             </UserContext.Provider>

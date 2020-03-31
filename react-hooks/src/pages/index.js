@@ -1,13 +1,19 @@
 import React, { useContext } from "react";
 import { UserContext } from "../userContext";
+import { login } from '../utils/login';
 
 export function Index() {
-   const { value, setValue } = useContext(UserContext);
+   const { user, setUser } = useContext(UserContext);
    return (
       <div>
          <h2>Home</h2>
-         <p>{value}</p>
-         <button onClick={() => setValue("hey")}>Change Value</button>
+         <pre>{JSON.stringify(user, null, 2)}</pre>
+         {user ? <button onClick={() => setUser(null)}>logout</button> :
+            <button onClick={async () => {
+               const user = await login();
+               setUser(user)
+            }}>Login</button>
+         }
       </div>
    )
 }
